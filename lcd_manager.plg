@@ -68,6 +68,7 @@ The 'lcdproc-package' file.
 -->
 <FILE Name="&packages;/lcdproc.20241124.tgz" Run="upgradepkg --install-new ">
 <URL>&gitURL;/lcdproc.20241121.tgz</URL>
+<SHA256>f82ab090ba22bb503c91080c5ccec1c01ef5b9cf25cea6d5197f5869dba1fb75</SHA256>
 </FILE>
 
 <!--
@@ -75,6 +76,7 @@ The 'libhid-package' file.
 -->
 <FILE Name="&packages;/libhid-0.2.16-x86_64-2_slack.txz" Run="upgradepkg --install-new ">
 <URL>&gitURL;/libhid-0.2.16-x86_64-2_slack.txz</URL>
+<SHA256>f3b273b18c8c968d56fd5f65b0d69f3c3fc41dded105fe313725f05b0e02e182</SHA256>
 </FILE>
 
 
