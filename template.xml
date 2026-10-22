@@ -206,6 +206,10 @@
 			<type>select</type>
 			<options>
 				<option>
+					<value>asustor</value>
+					<name>ASUSTOR NAS LCD</name>
+				</option>
+				<option>
 					<value>nexcom</value>
 					<name>nexcom</name>
 				</option>

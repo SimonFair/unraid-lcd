@@ -131,30 +131,54 @@ function sync_package_lcdproc() {
 		$config_text .= "Port=$port\n";
 		$config_text .= "ReportLevel=2\n";
 		$config_text .= "ReportToSyslog=yes\n";
-		$config_text .= "WaitTime=5\n";
+		if ($lcdproc_config['driver'] == "asustor") {
+			$config_text .= "WaitTime=10\n";
+			$config_text .= "TitleSpeed=4\n";
+		} else {
+			$config_text .= "WaitTime=5\n";
+		}
 		$config_text .= "User=nobody\n";
 		$config_text .= "ServerScreen=no\n";
 		$config_text .= "Foreground=no\n";
 		$config_text .= "DriverPath=/lib/lcdproc/\n";
 		$config_text .= "GoodBye=\"Thanks for using\"\n";
 		$config_text .= "GoodBye=\"unRAID          \"\n";
-		$config_text .= "Heartbeat=open\n";
-		$config_text .= "Backlight=open\n";
-		/* FIXME: Specific to the pyramid project */
-		$config_text .= "ToggleRotateKey=Enter\n";
-		$config_text .= "PrevScreenKey=Left\n";
-		$config_text .= "NextScreenKey=Right\n";
+		if ($lcdproc_config['driver'] == "asustor") {
+			$config_text .= "Heartbeat=off\n";
+			$config_text .= "Backlight=open\n";
+		} else {
+			$config_text .= "Heartbeat=open\n";
+			$config_text .= "Backlight=open\n";
+		}
+		if ($lcdproc_config['driver'] == "asustor") {
+			$config_text .= "ToggleRotateKey=Menu\n";
+			$config_text .= "PrevScreenKey=Escape\n";
+			$config_text .= "NextScreenKey=Enter\n";
+		} else {
+			/* FIXME: Specific to the pyramid project */
+			$config_text .= "ToggleRotateKey=Enter\n";
+			$config_text .= "PrevScreenKey=Left\n";
+			$config_text .= "NextScreenKey=Right\n";
+		}
 		$config_text .= "ScrollUpKey=Up\n";
 		$config_text .= "ScrollDownKey=Down\n";
-		/* FIXME: pyramid test menu */
-		$config_text .= "[menu]\n";
-		$config_text .= "MenuKey=Escape\n";
-		$config_text .= "EnterKey=Enter\n";
-		$config_text .= "UpKey=Up\n";
-		$config_text .= "DownKey=Down\n";
+		if ($lcdproc_config['driver'] != "asustor") {
+			/* FIXME: pyramid test menu */
+			$config_text .= "[menu]\n";
+			$config_text .= "MenuKey=Escape\n";
+			$config_text .= "EnterKey=Enter\n";
+			$config_text .= "UpKey=Up\n";
+			$config_text .= "DownKey=Down\n";
+		}
 
 		/* lcdproc default driver definitions */
 		switch ($lcdproc_config['driver']) {
+			case "asustor":
+				$config_text .= "[{$lcdproc_config['driver']}]\n";
+				$config_text .= "Device={$realport}\n";
+				$config_text .= "Size=16x2\n";
+				$config_text .= "Speed=115200\n";
+				break;
 			case "SureElec":
 				$config_text .= "[{$lcdproc_config['driver']}]\n";
 				$config_text .= "driverpath =/lib/lcdproc/\n";
