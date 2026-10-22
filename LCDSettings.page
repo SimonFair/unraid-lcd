@@ -92,6 +92,7 @@ _(LCD Running)_:
 
 _(LCD Type(Driver))_:
 : <select name="DRIVER" size="1" >
+  <?=mk_option($cfg["DRIVER"], "asustor", "ASUSTOR NAS LCD");?>
   <?=mk_option($cfg["DRIVER"], "CFontzPacket", "CFontzPacket");?>
   <?=mk_option($cfg["DRIVER"], "icp_a106", "ICP A106(QNAP)");?>
   <?=mk_option($cfg["DRIVER"], "mdm166a", "Futaba (mdm166a)");?>
@@ -116,6 +117,7 @@ _(Run lcdproc options)_:
 : <input type="text" name="LCDPROCOPTS" value="<?=$cfg["LCDPROCOPTS"];?>"/>
 
 :lm_settings_symlinks_plug:
+> ASUSTOR 16x2 displays are easiest to read with a short screen list such as <code>T U M</code>. Disk and interface screens can scroll heavily on narrow displays.<br>
 > Set lcdproc options.<br>
     C CPU               detailed CPU usage<br>
     P SMP-CPU           CPU usage overview (one line per CPU)<br>
@@ -142,4 +144,3 @@ _(Run lcdproc options)_:
 
 </form>
 <?endif;?>
-
